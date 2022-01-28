@@ -3,3 +3,13 @@ forkify-architecture-recipe-loading.png
 forkify-flowchart-part-1.png
 forkify-flowchart-part-2.png
 forkify-flowchart-part-3.png
+
+# ignore node module
+node_modules
+
+# ignore all the .json files
+*.json
+
+# ignore parcel
+.parcel-cache
+dist
