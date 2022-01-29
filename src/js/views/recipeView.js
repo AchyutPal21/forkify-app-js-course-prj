@@ -28,6 +28,15 @@ class RecipeView {
     this.#parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
+  addHandlerRender(handlerFn) {
+    // a good way of dry code
+    // window.addEventListener("hashchange", handlerFn);
+    // window.addEventListener("load", handlerFn);
+    ["hashchange", "load"].forEach((evnt) =>
+      window.addEventListener(evnt, handlerFn)
+    );
+  }
+
   #clear() {
     this.#parentElement.innerHTML = "";
   }
