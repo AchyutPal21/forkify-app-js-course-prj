@@ -14,11 +14,11 @@ export const getJSON = async function (url) {
     const fetchPromises = [fetch(url), timeout(TIMEOUT_SEC)];
     const response = await Promise.race(fetchPromises);
 
-    // converting response promise into json
-    const data = await response.json();
-
     // catching for the 400+ errors
     if (!response.ok) throw new Error(`(${response.status}) ${data.message}`);
+
+    // converting response promise into json
+    const data = await response.json();
 
     return data;
   } catch (error) {
