@@ -6,6 +6,9 @@ console.log(Fraction);
 class RecipeView {
   #parentElement = document.querySelector(".recipe");
   #data;
+  #errorMessage =
+    "Couldn't find your recipe 😕. Please try for another one! 🤗";
+  #successMessage = "Let's start cooking 😊";
 
   render(data) {
     this.#data = data;
@@ -24,6 +27,36 @@ class RecipeView {
         </div>
     `;
 
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+  }
+
+  renderError(errorMsg = this.#errorMessage) {
+    const markup = `
+            <div class="error">
+                <div>
+                    <svg>
+                        <use href="${icons}#icon-alert-triangle"></use>
+                    </svg>
+                </div>
+                <p>${errorMsg}</p>
+            </div>
+        `;
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+  }
+
+  renderMessage(msg = this.#successMessage) {
+    const markup = `
+        <div class="message">
+            <div>
+                <svg>
+                    <use href="${icons}#icon-smile"></use>
+                </svg>
+            </div>
+            <p>${msg}</p>
+        </div>
+        `;
     this.#clear();
     this.#parentElement.insertAdjacentHTML("afterbegin", markup);
   }
