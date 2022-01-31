@@ -16,11 +16,11 @@ export const loadRecipe = async function (id) {
   try {
     // 1> Loading recipe
     const data = await getJSON(`${API_URL}${id}`);
-    console.log(data);
+    // console.log(data);
 
     // making our recipe object from data for better usage
     const { recipe } = data.data;
-    console.log(recipe);
+    // console.log(recipe);
     // following some dirty way😜
     state.recipe = {
       id: recipe.id,
@@ -31,7 +31,7 @@ export const loadRecipe = async function (id) {
       cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients,
     };
-    console.log("our recipe", state.recipe);
+    // console.log("our recipe", state.recipe);
   } catch (error) {
     throw error;
   }
@@ -43,12 +43,9 @@ export const loadSearchResult = async function (query) {
     const data = getJSON(`${API_URL}?search=${query}`);
     const queryRecipes = await data;
 
-    if (!queryRecipes.results)
-      throw new Error(
-        `No recipe found for ${query} 😕, Search for another one! 😊`
-      );
+    if (!queryRecipes.results) throw new Error(`${query}`);
 
-    console.log(queryRecipes);
+    // console.log(queryRecipes);
 
     state.search.results = queryRecipes.data.recipes.map((recipe) => {
       return {
@@ -59,9 +56,9 @@ export const loadSearchResult = async function (query) {
       };
     });
 
-    console.log(state.search.results);
+    // console.log(state.search.results);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw error;
   }
 };
