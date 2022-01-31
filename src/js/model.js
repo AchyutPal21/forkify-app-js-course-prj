@@ -32,6 +32,7 @@ export const loadRecipe = async function (id) {
       image: recipe.image_url,
       cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients,
+      servings: recipe.servings,
     };
     // console.log("our recipe", state.recipe);
   } catch (error) {
@@ -71,6 +72,17 @@ export const getSearchResultPage = function (page = state.search.page) {
   const start = (page - 1) * state.search.resultsPerPage;
   const end = page * state.search.resultsPerPage;
   console.log(state.search.results);
+  console.log("//", state.recipe);
 
   return state.search.results.slice(start, end);
+};
+
+export const updateServings = function (newServings) {
+  state.recipe.ingredients.forEach((ingredient) => {
+    ingredient.quantity =
+      ingredient.quantity * (newServings / state.recipe.servings);
+  });
+
+  state.recipe.servings = newServings;
+  console.log(state.recipe.servings);
 };
