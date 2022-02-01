@@ -28,6 +28,35 @@ export default class View {
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
+  //IMP DOM changing (DOM CHANGING ***)
+  update(data) {
+    this._data = data;
+    const newMarkup = this._generateMarkup();
+    const newDOM = document.createRange().createContextualFragment(newMarkup);
+    const newElements = Array.from(newDOM.querySelectorAll("*"));
+    const curElements = Array.from(this._parentElement.querySelectorAll("*"));
+
+    newElements.forEach(function (newNodeEle, index) {
+      const currEle = curElements[index];
+
+      // Update the TEXT
+      if (
+        !newNodeEle.isEqualNode(currEle) &&
+        newNodeEle.firstChild?.nodeValue.trim() !== ""
+      ) {
+        currEle.textContent = newNodeEle.textContent;
+      }
+
+      // Update the ATTRIBUTES
+      if (!newNodeEle.isEqualNode(currEle)) {
+        console.log(Array.from(newNodeEle.attributes));
+        Array.from(newNodeEle.attributes).forEach((attr) =>
+          currEle.setAttribute(attr.name, attr.value)
+        );
+      }
+    });
+  }
+
   renderError(errorMsg = this._errorMessage) {
     const markup = `
             <div class="error">

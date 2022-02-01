@@ -27,6 +27,10 @@ async function controlRecipes() {
 
     recipeView.renderSpinner();
 
+    // IMP Changing the active from the result
+    // 0> Update results view to mark selected search result
+    resultsView.update(model.getSearchResultPage());
+
     // 1> Loading recipe
     await model.loadRecipe(recipeID); // model loadRecipe is an async function which returns a promise
 
@@ -75,8 +79,10 @@ const controlPagination = function (goToPage) {
 const controlServings = function (updateTo) {
   // update the recipe serving (in state)
   model.updateServings(updateTo);
-  // update the recipe view
-  recipeView.render(model.state.recipe);
+
+  // only updating the text and the values
+  // recipeView.render(model.state.recipe);
+  recipeView.update(model.state.recipe);
 };
 
 const init = function () {
