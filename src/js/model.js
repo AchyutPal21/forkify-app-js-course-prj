@@ -80,8 +80,6 @@ export const getSearchResultPage = function (page = state.search.page) {
 
   const start = (page - 1) * state.search.resultsPerPage;
   const end = page * state.search.resultsPerPage;
-  console.log(state.search.results);
-  console.log("//", state.recipe);
 
   return state.search.results.slice(start, end);
 };
@@ -96,6 +94,10 @@ export const updateServings = function (newServings) {
   console.log(state.recipe.servings);
 };
 
+const persistBookmarks = function () {
+  localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
+};
+
 export const addBookmark = function (recipe) {
   // Add bookmark
   state.bookmarks.push(recipe);
@@ -106,6 +108,8 @@ export const addBookmark = function (recipe) {
   } else {
     state.recipe.bookmarked = false;
   }
+
+  persistBookmarks();
 };
 
 export const deleteBookmark = function (id) {
@@ -117,4 +121,21 @@ export const deleteBookmark = function (id) {
   if (id === state.recipe.id) {
     state.recipe.bookmarked = false;
   }
+
+  persistBookmarks();
 };
+
+const initLocalDB = function () {
+  const storage = localStorage.getItem("bookmarks");
+  if (storage) {
+    state.bookmarks = JSON.parse(storage);
+  }
+};
+initLocalDB();
+
+// For Developing purpose
+const clearAllBookmarks = function () {
+  localStorage.clear("bookmarks");
+};
+
+// clearAllBookmarks();
