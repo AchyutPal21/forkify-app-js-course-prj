@@ -1,3 +1,5 @@
+# Forkify Project
+
 Hello World, it's me Achyut Pal (https://www.linkedin.com/in/achyutpal21/)
 
 This is my JS course final project that I have learned
