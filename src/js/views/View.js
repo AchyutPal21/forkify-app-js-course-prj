@@ -67,7 +67,7 @@ export default class View {
                         <use href="${icons}#icon-alert-triangle"></use>
                     </svg>
                 </div>
-                <p>${this._errorMessage}</p>
+                <p>${errorMsg}</p>
             </div>
         `;
     this._clear();

@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="src/img/favicon.png" type="image/x-icon" />
 
     <link rel="stylesheet" href="src/sass/main.scss" />
+    <script defer src="https://kit.fontawesome.com/578ef74b80.js" crossorigin="anonymous"></script>
     <script defer src="src/js/controller.js" type="module"></script>
 
     <title>forkify | Search over 1,000,000 recipes</title>
@@ -262,13 +263,13 @@
         <div class="upload__column">
           <h3 class="upload__heading">Recipe data</h3>
           <label>Title</label>
-          <input value="TEST" required name="title" type="text" />
+          <input value="TEST21" required name="title" type="text" />
           <label>URL</label>
-          <input value="TEST" required name="sourceUrl" type="text" />
+          <input value="TEST21" required name="sourceUrl" type="text" />
           <label>Image URL</label>
-          <input value="TEST" required name="image" type="text" />
+          <input value="TEST21" required name="image" type="text" />
           <label>Publisher</label>
-          <input value="TEST" required name="publisher" type="text" />
+          <input value="TEST21" required name="publisher" type="text" />
           <label>Prep time</label>
           <input value="23" required name="cookingTime" type="number" />
           <label>Servings</label>
@@ -276,7 +277,16 @@
         </div>
 
         <div class="upload__column">
-          <h3 class="upload__heading">Ingredients</h3>
+          <a class="upload__heading heading__info_ingr">Ingredients <i class="fas fa-info-circle info__ingr"></i></a>
+          <div class="show__input_formating">
+            <ol class="formating_types">
+              <li>Quantity, Unit, Description</li>
+              <li>Quantity, Unit,</li>
+              <li>Quantity,, Description</li>
+              <li>,Unit, Description</li>
+              <li>,,,</li>
+            </ol>
+          </div>
           <label>Ingredient 1</label>
           <input
             value="0.5,kg,Rice"

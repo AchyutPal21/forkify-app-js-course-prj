@@ -25,3 +25,27 @@ export const getJSON = async function (url) {
     throw error;
   }
 };
+
+export const sendJSON = async function (url, uploadData) {
+  try {
+    // fetching from the api
+    const fetchPromises = fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(uploadData),
+    });
+    const response = await Promise.race([fetchPromises, timeout(TIMEOUT_SEC)]);
+
+    // converting response promise into json
+    const data = await response.json();
+
+    // catching for the 400+ errors
+    if (!response.ok) throw new Error(`(${response.status}) ${data.message}`);
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

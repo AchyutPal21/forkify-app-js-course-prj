@@ -97,3 +97,38 @@
     justify-self: center;
   }
 }
+
+// ===========================================
+
+.heading__info_ingr {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.info__ingr {
+  color: #f48982;
+}
+
+.show__input_formating {
+  width: 200px;
+  height: 90px;
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 80px;
+  padding: 2px 1px 0;
+  border: 1px solid #615551;
+  border-radius: 4px;
+  color: #000;
+  background-color: #f9f5f3;
+}
+
+.formating_types {
+  font-size: 10px;
+  letter-spacing: 1px;
+  list-style-position: inside;
+}
+
+.heading__info_ingr:hover + .show__input_formating {
+  display: block;
+}
