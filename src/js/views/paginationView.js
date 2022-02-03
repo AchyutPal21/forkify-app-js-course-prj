@@ -25,19 +25,16 @@ class PaginationView extends View {
 
     // Page 1, and there are other pages
     if (currentPage === 1 && totalPages > 1) {
-      console.log("option: 1");
       return this._generateMarkupButton(1, currentPage);
     }
 
     // Last Page
     if (currentPage === totalPages && totalPages > 1) {
-      console.log("option: 2");
       return this._generateMarkupButton(2, currentPage);
     }
 
     // Other Page
     if (currentPage < totalPages && currentPage > 1) {
-      console.log("option: 3");
       return this._generateMarkupButton(3, currentPage);
     }
 

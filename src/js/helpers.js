@@ -8,10 +8,36 @@ const timeout = function (s) {
   });
 };
 
-export const getJSON = async function (url) {
+export const AJAX = async function (url, uploadData = undefined) {
+  try {
+    const fetchPromises = uploadData
+      ? fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(uploadData),
+        })
+      : fetch(url);
+
+    const response = await Promise.race([fetchPromises, timeout(TIMEOUT_SEC)]);
+
+    // converting response promise into json
+    const data = await response.json();
+
+    // catching for the 400+ errors
+    if (!response.ok) throw new Error(`(${response.status}) ${data.message}`);
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+/* export const getJSON = async function (url) {
   try {
     // fetching from the api
-    const fetchPromises = [fetch(url), timeout(TIMEOUT_SEC)];
+    const fetchPromises = 
     const response = await Promise.race(fetchPromises);
 
     // catching for the 400+ errors
@@ -29,23 +55,8 @@ export const getJSON = async function (url) {
 export const sendJSON = async function (url, uploadData) {
   try {
     // fetching from the api
-    const fetchPromises = fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(uploadData),
-    });
-    const response = await Promise.race([fetchPromises, timeout(TIMEOUT_SEC)]);
-
-    // converting response promise into json
-    const data = await response.json();
-
-    // catching for the 400+ errors
-    if (!response.ok) throw new Error(`(${response.status}) ${data.message}`);
-
-    return data;
+    const fetchPromises = ;
+    
   } catch (error) {
-    throw error;
   }
-};
+}; */
