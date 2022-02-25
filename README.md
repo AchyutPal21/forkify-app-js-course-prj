@@ -1,6 +1,5 @@
 # Forkify Project
 
-link to forkify (https://recipes-4u-ap.netlify.app/)
 Hello World, it's me Achyut Pal (https://www.linkedin.com/in/achyutpal21/)
 
 This is my JS course final project that I have learned
